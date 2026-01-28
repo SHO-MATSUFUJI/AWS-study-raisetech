@@ -79,7 +79,7 @@ Resources:
     Properties:
       ImageId: ami-0d52744d6551d851e
       InstanceType: t3.micro
-      KeyName: MATSUFUJI_SHOICHI
+      KeyName: raisetech-study
       SubnetId: !Ref PublicSubnet
       SecurityGroupIds:
         - !Ref EC2SecurityGroup

@@ -77,7 +77,7 @@ Resources:
   MyEC2Instance:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: ami-0d52744d6551d851e
+      ImageId: ami-06cce67a5893f85f9
       InstanceType: t3.micro
       KeyName: lecture25-keypair
       SubnetId: !Ref PublicSubnet

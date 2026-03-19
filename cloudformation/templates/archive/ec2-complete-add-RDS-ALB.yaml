@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: '課題：初級編の環境構築'
+Description: '26_インフラのコード化を支援するツール課題：CloudFormationでRDS、ELBまでの環境を構築。'
 
 Parameters:
   DBPassword:
@@ -7,7 +7,7 @@ Parameters:
     NoEcho: true
     MinLength: "8"
     MaxLength: "41"
-    Description: DBInstanceのパスワード
+    Description: DBInstancePassword
 
   ImageId:
     Type: AWS::EC2::Image::Id
@@ -251,6 +251,7 @@ Resources:
       DefaultActions:
         - Type: forward
           TargetGroupArn: !Ref MyTargetGroup
+
 
 Outputs:
   VPCId:

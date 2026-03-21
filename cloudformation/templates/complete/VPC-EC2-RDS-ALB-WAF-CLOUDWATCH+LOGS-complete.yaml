@@ -22,7 +22,23 @@ Parameters:
     Type: AWS::EC2::KeyPair::KeyName
     Description: Amazon EC2 Key Pair Name
 
-  
+  SNSEndpoint:
+    Type: String
+    NoEcho: true
+    Description: SNS Endpoint Email Address
+
+  EC2Threshold:
+    Type: Number
+    Description: MyCloudWatch CPUUtilization Threshold
+
+  EC2Period:
+    Type: Number
+    Description: MyCloudWatch CPUUtilization Period
+
+  EC2EvaluationPeriods:
+    Type: Number
+    Description: MyCloudWatch CPUUtilization EvaluationPeriods
+
 Resources:
   SimpleVPC:
     Type: AWS::EC2::VPC
@@ -259,7 +275,7 @@ Resources:
         Allow: {}
       Scope: REGIONAL
       VisibilityConfig:
-        CloudWatchMetricsEnabled: false
+        CloudWatchMetricsEnabled: true
         MetricName: AWSStudyWaf
         SampledRequestsEnabled: true
       Rules:
@@ -272,7 +288,7 @@ Resources:
           OverrideAction:
             None: {}
           VisibilityConfig:
-            CloudWatchMetricsEnabled: false
+            CloudWatchMetricsEnabled: true
             MetricName: AWSManagedRulesCommonRuleSet
             SampledRequestsEnabled: true
 
@@ -287,9 +303,9 @@ Resources:
     Properties:
       Namespace: AWS/EC2
       MetricName: CPUUtilization
-      Threshold: 5
-      Period: 60
-      EvaluationPeriods: 1
+      Threshold: !Ref EC2Threshold
+      Period: !Ref EC2Period
+      EvaluationPeriods: !Ref EC2EvaluationPeriods
       ComparisonOperator: GreaterThanThreshold
       Dimensions:
         - Name: InstanceId

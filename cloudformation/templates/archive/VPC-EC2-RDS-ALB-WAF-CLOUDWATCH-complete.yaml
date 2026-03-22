@@ -306,18 +306,6 @@ Resources:
           Protocol: Email
       TopicName: cloudwatch-study-alarm-topic
 
-  MyCloudWatchLogs:
-    Type: AWS::Logs::LogGroup
-    Properties:
-      LogGroupName: aws-waf-logs-awsstudy
-
-  MyLoggingConfiguration:
-    Type: AWS::WAFv2::LoggingConfiguration
-    Properties:
-      LogDestinationConfigs:
-        - !GetAtt MyCloudWatchLogs.Arn
-      ResourceArn: !GetAtt MyWaf.Arn
-
 Outputs:
   VPCId:
     Description: VPC ID

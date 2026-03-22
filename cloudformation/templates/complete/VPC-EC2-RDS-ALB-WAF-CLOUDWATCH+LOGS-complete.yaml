@@ -318,7 +318,7 @@ Resources:
     Type: AWS::SNS::Topic
     Properties:
       Subscription:
-        - Endpoint: www.abc.shoichi@gmail.com
+        - Endpoint: !Ref SNSEndpoint
           Protocol: Email
       TopicName: cloudwatch-study-alarm-topic
 

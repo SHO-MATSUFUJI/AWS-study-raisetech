@@ -5,12 +5,12 @@ variable "ec2_ami" {
 
 variable "ec2_keypair" {
   type        = string
-  description = "The kyepair for the EC2"
+  description = "The keypair for the EC2"
 }
 
 variable "my_pcip" {
   type        = string
-  description = "IP adress for my PC"
+  description = "IP address for my PC,CIDR(/32)"
 }
 
 variable "db_password" {
@@ -30,7 +30,7 @@ variable "evaluation_periods" {
 
 variable "threshold" {
   type = number
-   description = "Thresfold for the EC2 metric"
+   description = "Threshold for the EC2 metric"
 }
 
 variable "email" {

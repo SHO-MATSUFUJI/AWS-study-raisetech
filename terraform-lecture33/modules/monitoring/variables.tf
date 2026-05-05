@@ -10,7 +10,7 @@ variable "period" {
 
 variable "threshold" {
   type = number
-  description = "Thresfold for the EC2 metric"
+  description = "Threshold for the EC2 metric"
 }
 
 variable "ec2_instance" {

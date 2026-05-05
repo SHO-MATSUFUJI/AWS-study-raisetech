@@ -1,6 +1,6 @@
 variable "my_pcip" {
   type = string
-  description = "The IP address allowed for access"
+  description = "The IP address allowed for access,CIDR(/32)"
 }
 
 variable "vpc_id" {

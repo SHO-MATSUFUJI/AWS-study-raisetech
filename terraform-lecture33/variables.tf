@@ -20,16 +20,20 @@ variable "db_password" {
 
 variable "period" {
   type = number
+  description = "Period for the EC2 metric"
 }
 
 variable "evaluation_periods" {
   type = number
+  description = "Evaluation periods for the EC2 metric"
 }
 
 variable "threshold" {
   type = number
+   description = "Thresfold for the EC2 metric"
 }
 
 variable "email" {
   type = string
+  description = "Subscription fo the e-mail address"
 }

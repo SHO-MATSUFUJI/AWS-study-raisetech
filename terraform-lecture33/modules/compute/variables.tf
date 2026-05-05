@@ -25,9 +25,9 @@ variable "ec2_instance" {
   description = "The instancetype for EC2"
 }
 
-variable "ec2_kyepair" {
+variable "ec2_keypair" {
   type = string
-  description = "The kyepair for EC2"
+  description = "The keypair for EC2"
 }
 
 variable "ec2_subnet" {

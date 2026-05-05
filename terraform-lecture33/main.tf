@@ -8,7 +8,7 @@ module "compute" {
   vpc_id      = module.network.vpc_id
   ec2_subnet  = module.network.publicsubnet1a_id
   ec2_ami     = var.ec2_ami
-  ec2_kyepair = var.ec2_kyepair
+  ec2_keypair = var.ec2_keypair
   my_pcip     = var.my_pcip
   alb_sg      = module.alb.alb_sg
 }

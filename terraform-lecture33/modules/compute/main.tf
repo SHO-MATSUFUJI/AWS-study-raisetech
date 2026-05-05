@@ -33,7 +33,7 @@ resource "aws_instance" "ec2" {
   vpc_security_group_ids =  [
     aws_security_group.ec2.id
   ]
-  key_name = var.ec2_kyepair
+  key_name = var.ec2_keypair
   
   tags = {
     Name = "MyEC2Instance"

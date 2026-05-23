@@ -1,5 +1,2 @@
-# Terraform
-*.tfstate
-*.tfstate.backup
-*.tfvars
-.terraform/
+# C:\dev\Github\AWS-study-raisetech 
+*.bkp

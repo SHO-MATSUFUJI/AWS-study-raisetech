@@ -6,11 +6,11 @@
 
 ## 実装内容
 
-Terraformで構築したインフラ環境をbuild-in testを利用し、インフラテストを実装・実施しました。  
+Terraformで構築したインフラ環境をbuilt-in testを利用し、インフラテストを実装・実施しました。  
 
 ### 動作確認環境
 
-- **Terraform本体**: v1.14.7 (on windows_amd64)
+- **Terraform本体**: v1.14.7
 - **OS/CPU**:Windows/amd64
 - **AWS Provider**: v6.40.0
 

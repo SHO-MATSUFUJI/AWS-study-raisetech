@@ -1,0 +1,5 @@
+# Terraform-lecture33
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.terraform/

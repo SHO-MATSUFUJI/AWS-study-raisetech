@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "lecture33-20260505"
-    key    = "terraform-lecture33/terraform.tfstate"
+    bucket = "awsstudy-s3-backet-shoichi"
+    key    = "terraform-test-lecture40/terraform.tfstate"
     region = "ap-northeast-1"
   }
 }

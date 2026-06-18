@@ -7,7 +7,7 @@ module "compute" {
 
   vpc_id      = module.network.vpc_id
   ec2_subnet  = module.network.publicsubnet1a_id
-  ec2_ami     = var.ec2_ami
+  ec2_ami     = data.aws_ssm_parameter.latest_ami.value
   ec2_keypair = var.ec2_keypair
   my_pcip     = var.my_pcip
   alb_sg      = module.alb.alb_sg
@@ -47,4 +47,8 @@ module "monitoring" {
   threshold          = var.threshold
   my_waf             = module.security.web_acl_arn
   email              = var.email
+}
+
+data "aws_ssm_parameter" "latest_ami" {
+  name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
 }

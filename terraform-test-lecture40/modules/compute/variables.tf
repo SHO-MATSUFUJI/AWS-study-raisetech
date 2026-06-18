@@ -16,7 +16,7 @@ variable "alb_sg" {
 
 variable "ec2_ami" {
   type = string
-  description = "The ami for C2"
+  description = "The ami for EC2"
 }
 
 variable "ec2_instance" {

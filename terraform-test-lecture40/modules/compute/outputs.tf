@@ -22,17 +22,6 @@ output "ssh_to_port" {
   value = aws_vpc_security_group_ingress_rule.ec2_ssh.to_port
   description = "To port number from ssh"
 }
-
-output "ec2_to_port" {
-  value = aws_vpc_security_group_ingress_rule.ec2_8080.to_port
-  description = "To port number from EC2 port"
-}
-
-output "ec2_from_port" {
-  value = aws_vpc_security_group_ingress_rule.ec2_8080.from_port
-  description = "From port number from EC2 port"
-}
-
 output "instance_type" {
   value = aws_instance.ec2.instance_type
   description = "EC2 instance type"

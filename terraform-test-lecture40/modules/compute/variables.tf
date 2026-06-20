@@ -7,13 +7,6 @@ variable "vpc_id" {
  type = string
  description = "The VPC ID" 
 }
-
-variable "alb_sg" {
-  type = string
-  description = "The securitygroup for the ALB"
-  default = null
-  }
-
 variable "ec2_ami" {
   type = string
   description = "The ami for EC2"

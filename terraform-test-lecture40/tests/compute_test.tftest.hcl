@@ -15,17 +15,6 @@ run "verify_port_number" {
     condition     = module.compute.ssh_to_port == 22
     error_message = "SHH To port number did not match expected"
   }
-
-assert {
-    condition     = module.compute.ec2_from_port == 8080
-    error_message = "EC2_from_port number did not match expected"
-  }
-
-assert {
-    condition     = module.compute.ec2_to_port == 8080
-    error_message = "EC2_to_port number did not match expected"
-  }  
-
  assert {
     condition     = module.compute.instance_type== "t3.micro"
     error_message = "EC2 instance type did not match expected"

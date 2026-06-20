@@ -16,16 +16,6 @@ resource "aws_vpc_security_group_ingress_rule" "ec2_ssh" {
   to_port     = 22
 
 }
-
-resource "aws_vpc_security_group_ingress_rule" "ec2_8080" {
-  security_group_id = aws_security_group.ec2.id
-
-  referenced_security_group_id = var.alb_sg
-  from_port   = 8080
-  ip_protocol = "tcp"
-  to_port     = 8080
-}
-
 resource "aws_instance" "ec2" {
   ami           = var.ec2_ami
   instance_type = var.ec2_instance

@@ -10,7 +10,6 @@ module "compute" {
   ec2_ami     = data.aws_ssm_parameter.latest_ami.value
   ec2_keypair = var.ec2_keypair
   my_pcip     = var.my_pcip
-  alb_sg      = module.alb.alb_sg
 }
 
 module "alb" {
@@ -52,3 +51,11 @@ module "monitoring" {
 data "aws_ssm_parameter" "latest_ami" {
   name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
 }
+
+ resource "aws_vpc_security_group_ingress_rule" "alb_to_ec2" {
+   security_group_id = module.compute.ec2_sg
+   referenced_security_group_id = module.alb.alb_sg
+   from_port = 8080
+   ip_protocol = "tcp"
+   to_port = 8080
+ }

@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket = "awsstudy-s3-backet-shoichi"
+    #bucketはterraform init -backend-config bucket = "バケット名"で指定します。
     key    = "terraform-test-lecture40/terraform.tfstate"
     region = "ap-northeast-1"
   }

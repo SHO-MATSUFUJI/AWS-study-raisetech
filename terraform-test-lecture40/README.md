@@ -1,6 +1,15 @@
 # Lecture40 インフラ環境の自動テスト～Terraform built-in test～
 
-※注記:このTerraformコードを使うには事前にS3バケットを作成する必要があります。
+※注記:このTerraformコードを使うには事前にS3バケットを作成し、 `terraform init` の backend 設定で変数で指定できるようにしてください。
+
+#### **「backend設定手順」**
+
+1. バックエンド用S3バケットの作成  
+TerraformのState管理用S3バケットを事前に作成してください。
+
+2. 初期化（terraform init）  
+バックエンドのS3バケット名は、初期化時に `-backend-config` オプションを使って環境変数などから安全に指定します。  
+【コマンド】`terraform init -backend-config="bucket=バケット名"`
 
 ---
 

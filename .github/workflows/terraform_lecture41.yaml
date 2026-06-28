@@ -13,6 +13,11 @@ jobs:
   lecture41_job:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: terraform-test-lecture40
+        
+
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4

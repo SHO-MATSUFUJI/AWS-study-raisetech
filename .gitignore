@@ -1,2 +1,36 @@
+###################################################
 # C:\dev\Github\AWS-study-raisetech 
+###################################################
 *.bkp
+
+# VSCode設定
+.vscode/
+
+###################################################
+# GitHub公式のTerraform用 .gitignore テンプレート
+###################################################
+# ローカルキャッシュ（プラグインやモジュール）
+.terraform/
+
+# 状態管理ファイル（絶対にコミット禁止）
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+
+# 変数定義ファイル（パスワードなどの機密情報用）
+*.tfvars
+*.tfvars.json
+
+# 個別の設定オーバーライド用
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# ログファイル
+crash.log
+crash.*.log
+
+# CLIの個人設定ファイル
+.terraformrc
+terraform.rc

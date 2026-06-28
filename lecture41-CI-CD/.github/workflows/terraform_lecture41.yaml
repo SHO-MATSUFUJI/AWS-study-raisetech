@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: terraform-lecture41
+on: 
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write #デフォルトのIDトークン要求に必要
+  contents: read #リポジトリのコードを読み取るために必要
+
+jobs:
+  lecture41_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Cofigure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::541064518036:role/terraform-CICD-lecture41
+          aws-region: ap-northeast-1
+
+      - name: Setup Terraform CLI
+        uses: hashicorp/setup-terraform@v3
+        with: 
+          terraform_version: "1.14.7"
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan 
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve

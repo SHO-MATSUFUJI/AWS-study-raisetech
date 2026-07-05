@@ -4,12 +4,12 @@ output "ec2_sg" {
 }
 
 output "ec2_instance" {
-  value = aws_instance.ec2.id
+  value = aws_instance.ec2[*].id
   description = "EC2 instance ID"
 }
 
 output "instance_public_ip" {
-  value = aws_instance.ec2.public_ip
+  value = aws_instance.ec2[*].public_ip
   description = "Public ID for the EC2 instance"
 }
 
@@ -23,11 +23,11 @@ output "ssh_to_port" {
   description = "To port number from ssh"
 }
 output "instance_type" {
-  value = aws_instance.ec2.instance_type
+  value = aws_instance.ec2[*].instance_type
   description = "EC2 instance type"
 }
 
 output "instance_ami" {
-  value = aws_instance.ec2.ami
+  value = aws_instance.ec2[*].id
   description = "The ami for EC2"
 }

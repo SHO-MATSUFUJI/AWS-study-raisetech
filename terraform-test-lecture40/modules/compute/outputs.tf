@@ -28,6 +28,6 @@ output "instance_type" {
 }
 
 output "instance_ami" {
-  value = aws_instance.ec2[*].id
+  value = aws_instance.ec2[*].ami
   description = "The ami for EC2"
 }

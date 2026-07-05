@@ -16,12 +16,12 @@ run "verify_port_number" {
     error_message = "SHH To port number did not match expected"
   }
  assert {
-    condition     = module.compute.instance_type== "t3.micro"
+    condition     = alltrue([for instance in module.compute.instance_type : instance == "t3.micro"])
     error_message = "EC2 instance type did not match expected"
   }
   
 assert {
-    condition     = module.compute.instance_ami== data.aws_ssm_parameter.latest_ami.value
+    condition     = alltrue([for ami in module.compute.instance_ami : ami == data.aws_ssm_parameter.latest_ami.value])
     error_message = "EC2 AMI did not match expected"
   }
 

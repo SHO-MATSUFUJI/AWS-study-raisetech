@@ -16,7 +16,7 @@ module "alb" {
   source = "./modules/alb"
 
   vpc_id       = module.network.vpc_id
-  ec2_instance = module.compute.ec2_instance
+  ec2_instance = module.compute.ec2_instance[0]
   public_1a    = module.network.publicsubnet1a_id
   public_1c    = module.network.publicsubnet1c_id
 }
@@ -40,7 +40,7 @@ module "security" {
 module "monitoring" {
   source = "./modules/monitoring"
 
-  ec2_instance       = module.compute.ec2_instance
+  ec2_instance       = module.compute.ec2_instance[0]
   period             = var.period
   evaluation_periods = var.evaluation_periods
   threshold          = var.threshold

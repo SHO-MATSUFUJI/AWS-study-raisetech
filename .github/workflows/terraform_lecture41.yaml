@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-name: terraform-lecture41
+name: CI/CD-terraform-lecture41
 on: 
   push:
     branches:
@@ -30,7 +30,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Cofigure AWS credentials
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{secrets.AWS_ROLE_ARN}}
@@ -39,13 +39,13 @@ jobs:
       - name: Setup Terraform CLI
         uses: hashicorp/setup-terraform@v3
         with: 
-          terraform_version: "1.14.7"
+          terraform-version: "1.14.7"
 
       - name: Terraform Init
         run: |
-          terraform init\
-            -backend-config="bucket=${{vars.TF_BACKEND_BUCKET}}"\
-            -backend-config="key=${{vars.TF_BACKEND_KEY}}"\
+          terraform init \
+            -backend-config="bucket=${{vars.TF_BACKEND_BUCKET}}" \
+            -backend-config="key=${{vars.TF_BACKEND_KEY}}" \
             -backend-config="region=ap-northeast-1"
 
       - name: Terraform Plan

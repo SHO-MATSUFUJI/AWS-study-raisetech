@@ -1,16 +1,19 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-name: terraform-lecture41
+name: CI/CD-terraform-lecture41
 on: 
   push:
-    branches:
-      - main
+    branches: [main]
+
+  pull_request:
+    branches: [main]
 
 permissions:
   id-token: write #デフォルトのIDトークン要求に必要
   contents: read #リポジトリのコードを読み取るために必要
 
 jobs:
-  lecture41_job:
+  lecture41_CI_job:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
 
     defaults:
@@ -30,7 +33,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Cofigure AWS credentials
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{secrets.AWS_ROLE_ARN}}
@@ -39,13 +42,13 @@ jobs:
       - name: Setup Terraform CLI
         uses: hashicorp/setup-terraform@v3
         with: 
-          terraform_version: "1.14.7"
+          terraform-version: "1.14.7"
 
       - name: Terraform Init
         run: |
-          terraform init\
-            -backend-config="bucket=${{vars.TF_BACKEND_BUCKET}}"\
-            -backend-config="key=${{vars.TF_BACKEND_KEY}}"\
+          terraform init \
+            -backend-config="bucket=${{vars.TF_BACKEND_BUCKET}}" \
+            -backend-config="key=${{vars.TF_BACKEND_KEY}}" \
             -backend-config="region=ap-northeast-1"
 
       - name: Terraform Plan
@@ -54,5 +57,48 @@ jobs:
       - name: Terraform Test
         run: terraform test
 
+  lecture41_CD_job:
+    needs: lecture41_CI_job
+    if: github.event_name == 'push' && github.ref_name == 'main'
+    
+    runs-on: ubuntu-latest
+    
+    environment: production-study
+
+    defaults:
+      run:
+        working-directory: terraform-test-lecture40 
+      
+    env:
+      TF_VAR_db_password: ${{secrets.DB_PASSWORD}}
+      TF_VAR_ec2_keypair: ${{secrets.EC2_KEYPAIR}}
+      TF_VAR_email: ${{secrets.EMAIL}}
+      TF_VAR_my_pcip: ${{secrets.MY_PCIP}}
+      TF_VAR_evaluation_periods: ${{vars.EVALUATION_PERIODS}}
+      TF_VAR_period: ${{vars.PERIOD}}
+      TF_VAR_threshold: ${{vars.THRESHOLD}}
+      
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{secrets.AWS_ROLE_ARN}}
+          aws-region: ap-northeast-1
+
+      - name: Setup Terraform CLI
+        uses: hashicorp/setup-terraform@v3
+        with: 
+          terraform-version: "1.14.7"
+
+      - name: Terraform Init
+        run: |
+          terraform init \
+            -backend-config="bucket=${{vars.TF_BACKEND_BUCKET}}" \
+            -backend-config="key=${{vars.TF_BACKEND_KEY}}" \
+            -backend-config="region=ap-northeast-1" 
+     
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approveq

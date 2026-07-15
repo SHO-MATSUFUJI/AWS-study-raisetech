@@ -65,3 +65,10 @@ GitHub ActionsとAWSを安全に連携させるため、以下の初期設定を
 ![ALB](images/ALB作成.png)
 ![RDS](images/RDS作成.png)
 ![EC2増設](images/インスタンス増設.png)
+
+### Environment承認フロー
+
+![設定画面](images/設定画面.png)
+![承認画面](images/承認待ち画面.png)
+![承認画面](images/承認画面.png)
+![成功したワークフローの実行画面](images/成功したワークフローの実行画面.png)
